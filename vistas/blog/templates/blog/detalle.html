@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block contenido %}
+<div class="container my-5">
+    <h1 class="display-6">Detalle de Blog</h1>
+</div>
+
+<div class="container">
+    <p class="lead"> <strong> Titulo:</strong> {{entradablog.titulo}}</p>
+    <p class="lead"> <strong> Contenido:</strong> {{entradablog.contenido}}</p>
+    <p class="lead"> <strong> Fecha de creacion:</strong> {{entradablog.fecha_creacion|date:'d/m/y'}}</p>
+    <p class="lead"> <strong> Fecha de actualizacion:</strong> {{entradablog.fecha_actualizacion|date:'d/m/y'}}</p>
+</div>
+{% endblock %}

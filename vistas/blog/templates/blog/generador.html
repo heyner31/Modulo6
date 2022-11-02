@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+{% block contenido %}
+<div class="container my-5">
+    <h1 class="display-6">Generador de Blogs</h1>
+</div>
+
+<div class="container">
+    <!-- Como queremos que el formulario se envíe a la misma ruta, no nocesitamos el atributo action -->
+    <form class="bg-light border mt-3 p-3 rounded shadow" method="post">
+        <!-- Entradas agrupadas: .input-group .input-group-text -->
+        {% csrf_token %}
+        <div class="my-3">
+            <div class="input-group my-1">
+                <span class="input-group-text">Generar</span>
+                <input type="number" min="1" class="form-control" name="cantidad" placeholder="" value="">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Generar</button>
+    </form>
+</div>
+
+{% endblock %}

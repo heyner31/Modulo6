@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block contenido %}
+
+        <!-- Para representar etiquetas, aunque lo ideal sería usar nuestros propios colores -->
+        <div class="mt-5 border border-dark mx-auto p-2 rounded-3" style="width: 1000px;">
+                <h6>Aplicaciones</h6>
+                <hr>
+                <div class="d-flex flex-column mx-auto" style="width: 300px;">
+                        <a href="{% url 'actividades:home' %}" class="badge rounded-pill bg-success my-1 py-3 text-decoration-none">Actividades</a>
+                        <a href="{% url 'blog:home' %}" class="badge rounded-pill bg-primary my-1 py-3 text-decoration-none">Blog</a>
+                </div>   
+        </div>   
+
+
+{% endblock %}

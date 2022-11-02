@@ -1,0 +1,36 @@
+{% extends 'actividades/base.html' %}
+
+{% block contenido %}
+<div class="container my-5">
+    <h1 class="display-6">Detalle de actividad</h1>
+</div>
+
+<div class="container">
+    <p class="lead"> <strong> Titulo:</strong> {{actividad.titulo}}</p>
+    <p class="lead"> <strong> Descripción:</strong> {{actividad.descripcion}}</p>
+    <p class="lead"> <strong> Periodo de la actividad:</strong> del {{actividad.fecha_inicio|date:'d/m/y'}} al {{actividad.fecha_limite|date:'d/m/y'}} </p>
+    <p class="lead"> <strong> Importancia:</strong> {{actividad.importancia}}</p>
+    <p class="lead"> <strong> Estado:</strong> {{actividad.estado}}</p>
+    <p class="lead"> <strong> Fecha de registro de la actividad:</strong> {{actividad.fecha_creacion}}</p>
+    <p class="lead"> <strong> Fecha de ultima actualizacion:</strong> {{actividad.fecha_actualizacion}}</p>
+    <div>
+        <a href="{% url 'actividades:editar' actividad.id %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'actividades:eliminar' actividad.id %}" class="btn btn-danger" >Eliminar</a>
+    </div>
+
+    {% if confirmar_eliminar %}
+        <div class="mt-5 border border-dark mx-auto p-2 rounded-3 text-center" style="width: 350px;">
+            <h6>¿Seguro que desea eliminar la actividad?</h6>
+            <hr>
+            <div class="d-flex flex-column mx-auto" style="width: 300px;">
+                <form action="" method="POST">
+                {% csrf_token %}
+                    <button type="submit" class="btn btn-danger px-5">Si</button>
+                    <a href="{% url 'actividades:detalle' actividad.id %}" class="btn btn-success px-5">No</a>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

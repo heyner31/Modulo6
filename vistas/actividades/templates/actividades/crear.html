@@ -1,0 +1,57 @@
+{% extends 'actividades/base.html' %}
+
+{% block contenido %}
+<div class="container my-5">
+    <h1 class="display-6">{{accion|title}} actividad</h1>
+</div>
+
+<div class="container">
+    <form class="bg-light border my-5 p-3 rounded shadow" method="post">
+        {% csrf_token %}
+        <div class="my-3">
+
+            <div class="form-floating my-3">
+                <input type="text" class="form-control" id="et_titulo" placeholder="x" name="titulo" value="{{actividad.titulo}}" required>
+                <label for="et_titulo">Título</label>
+            </div>
+
+            <div class="form-floating my-3">
+                <textarea class="form-control" placeholder="x" id="et_descripcion" style="height:100px" name="descripcion">{{actividad.descripcion}}</textarea>
+                <label for="et_descripcion">Descripción</label>
+            </div>
+
+            <div class="form-floating my-3">
+                <input type="date" class="form-control" id="et_fecha_ini" placeholder="x" name="fecha_inicio" value="{{actividad.fecha_inicio|date:'Y-m-d'}}">
+                <label for="et_fecha_ini">Fecha de inicio</label>
+            </div>
+
+            <div class="form-floating my-3">
+                <input type="date" class="form-control" id="et_fecha_lim" placeholder="x" name="fecha_limite" value="{{actividad.fecha_limite|date:'Y-m-d'}}">
+                <label for="et_fecha_lim">Fecha límite</label>
+            </div>
+
+            <div class="my-3">
+                <label for="et_importancia">Importancia</label>
+                <select class="form-select" multiple id="et_importancia" name="importancia">
+                    {% for importancia in importancias %}
+                    <option value="{{importancia.id}}" {% if actividad.importancia == importancia %}selected{% endif %} >{{importancia}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="my-3">
+                <label for="et_estado">Estado</label>
+                <select class="form-select" multiple id="et_estado" name="estado">
+                    {% for estado in estados %}
+                    <option value="{{estado.id}}" {% if actividad.estado == estado %}selected{% endif %} >{{estado}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            
+        </div>
+    </form>
+</div>
+
+{% endblock %}
