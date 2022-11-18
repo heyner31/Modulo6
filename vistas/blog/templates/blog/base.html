@@ -12,6 +12,7 @@
 <body>
     {% url 'blog:home' as url_home %}
     {% url 'blog:generador' as url_generador %}
+    {% url 'blog:crear' as url_crear %}
 
     <div class="container-fluid bg-primary p-5">
         <h1 class="display-5 text-white">Entradas de Blogs</h1>
@@ -22,7 +23,7 @@
             <div class="container-fluid">
                 <!-- Logo o marca -->
                 <a class="navbar-brand" href="{% url 'core:home' %}">
-                    <span><i class="fa-brands fa-html5"></i></span>
+                    Inicio
                 </a>
                 
                 <!-- Botón para mostrar y ocultar el menú (solo visible cuando está colapsado)
@@ -40,6 +41,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == url_generador %} active {% endif %}" href="{% url 'blog:generador' %}">Generador</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == url_crear %}active{% endif %}" href="{% url 'blog:crear' %}">Crear</a>
                         </li>
                     </ul>
                     <div class="d-flex pt-3 pt-sm-0 me-2 text-light flex-column flex-sm-row gap-3">

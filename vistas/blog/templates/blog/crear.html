@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+
+{% block contenido %}
+<div class="container my-5">
+    <h1 class="display-6">{{accion|title}} Blog</h1>
+</div>
+
+<div class="container">
+    <form class="bg-light border my-5 p-3 rounded shadow" method="post">
+        {% csrf_token %}
+        <div class="my-3">
+
+            <div class="form-floating my-3">
+                <input type="text" class="form-control" id="et_titulo" placeholder="x" name="titulo" value="{{entradablog.titulo}}" required>
+                <label for="et_titulo">Título</label>
+            </div>
+
+            <div class="form-floating my-3">
+                <textarea class="form-control" placeholder="x" id="et_contenido" style="height:100px" name="contenido">{{entradablog.contenido}}</textarea>
+                <label for="et_contenido">Contenido</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            
+        </div>
+    </form>
+</div>
+
+{% endblock %}

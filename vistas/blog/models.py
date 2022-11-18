@@ -5,7 +5,7 @@ class EntradaBlog(models.Model):
     contenido = models.TextField(verbose_name='Contenido')
 
     fecha_creacion = models.DateTimeField(auto_now_add=True, verbose_name="fecha creacion")
-    fecha_actualizacion = models.DateTimeField(auto_now_add=True, verbose_name="fecha actualizacion")
+    fecha_actualizacion = models.DateTimeField(auto_now=True, verbose_name="fecha actualizacion")
     
     def __str__(self):
         return self.titulo

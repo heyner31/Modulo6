@@ -9,4 +9,5 @@ urlpatterns = [
     path('crear/', views.ActividadesCrear.as_view(), name="crear"),
     path('editar/<int:pk>/', views.ActividadesEditar.as_view(), name="editar"),
     path('eliminar/<int:pk>/', views.ActividadesEliminar.as_view(), name="eliminar"),
+    # path('email/', views.ActividadesEmail.as_view(), name="email"),
 ]

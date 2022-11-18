@@ -16,6 +16,12 @@
     <div>
         <a href="{% url 'actividades:editar' actividad.id %}" class="btn btn-primary">Editar</a>
         <a href="{% url 'actividades:eliminar' actividad.id %}" class="btn btn-danger" >Eliminar</a>
+        {% comment %} <form method="POST" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning px-4 ms-5 me-3" name="accion" value="descargar">Descargar PDF</button>
+            <button type="submit" class="btn btn-warning px-4" name="accion" value="visualizar">Visualizar PDF</button>
+        </form> {% endcomment %}
+
     </div>
 
     {% if confirmar_eliminar %}

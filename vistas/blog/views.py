@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.views import View
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import EntradaBlog
 import pdb
 import random
+from django.urls import reverse ,reverse_lazy
 
 class BlogHome(ListView):
     model = EntradaBlog
@@ -31,3 +32,31 @@ class BlogGenerador(View):
 class BlogDetalle(DetailView):
     model = EntradaBlog
     template_name = 'blog/detalle.html'
+
+class BlogCrear(CreateView):
+    extra_context = {'accion': 'crear'}
+    template_name = 'blog/crear.html'
+    
+    model = EntradaBlog
+    fields = ['titulo', 'contenido']
+    success_url = reverse_lazy('blog:home')
+
+    def post(self, request, *args, **kwargs):
+        resp = super().post(request, *args, **kwargs)
+
+        return resp
+
+class BlogEditar(UpdateView):
+    model = EntradaBlog
+    template_name = 'blog/crear.html'
+    extra_context = {'accion': 'editar'}
+    fields = ['titulo', 'contenido']
+
+    def get_success_url(self):
+        return reverse('blog:detalle', args=(self.kwargs['pk'],))
+
+class BlogEliminar(DeleteView):
+    model = EntradaBlog
+    template_name = 'blog/detalle.html'
+    success_url = reverse_lazy('blog:home')
+    extra_context = {'confirmar_eliminar':True}

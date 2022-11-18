@@ -10,5 +10,24 @@
     <p class="lead"> <strong> Contenido:</strong> {{entradablog.contenido}}</p>
     <p class="lead"> <strong> Fecha de creacion:</strong> {{entradablog.fecha_creacion|date:'d/m/y'}}</p>
     <p class="lead"> <strong> Fecha de actualizacion:</strong> {{entradablog.fecha_actualizacion|date:'d/m/y'}}</p>
+    <div>
+        <a href="{% url 'blog:editar' entradablog.id %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'blog:eliminar' entradablog.id %}" class="btn btn-danger" >Eliminar</a>
+    </div>
 </div>
+
+{% if confirmar_eliminar %}
+        <div class="mt-5 border border-dark mx-auto p-2 rounded-3 text-center" style="width: 350px;">
+            <h6>¿Seguro que desea eliminar el blog?</h6>
+            <hr>
+            <div class="d-flex flex-column mx-auto" style="width: 300px;">
+                <form action="" method="POST">
+                {% csrf_token %}
+                    <button type="submit" class="btn btn-danger px-5">Si</button>
+                    <a href="{% url 'blog:detalle' entradablog.id %}" class="btn btn-success px-5">No</a>
+                </form>
+            </div>
+        </div>
+{% endif %}
+
 {% endblock %}
